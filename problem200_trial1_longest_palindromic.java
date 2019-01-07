@@ -42,9 +42,9 @@ public class Solution {
             }
             
             if(L_even>=L_odd){
-                st = s.substring(i-L_even+1,i+L_even);
+                st = s.substring(i-L_even+1,i+L_even+1);
             }else{
-                st = s.substring(i-L_odd+1,i+L_odd-1);
+                st = s.substring(i-L_odd+1,i+L_odd);
             }
             
             if(st.length()>this.longestSize){
