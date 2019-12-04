@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Solution {
 	public ListNode mergeKLists(ListNode[] lists) {
-		if(lists==null)
+		if(lists==null || lists.length==0)
 			return null;
 		
 		PriorityQueue<ListNode> que = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>(){
