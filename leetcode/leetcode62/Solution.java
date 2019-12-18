@@ -1,27 +1,32 @@
 package leetcode65;
 
 public class Solution {
-	static int count = 0;
 	
-	public void searchPath(int curi, int curj, int m, int n){		
-		if(curi==m-1 && curj==n-1){
-			Solution.count++;
-			return;
-		}
-		if(curi>=m || curj>=n){
-			return;
+	public int searchPath(int[][] memo, int m, int n){
+		if(m==0 || n==0){
+			memo[m][n] = 1;
+			return 1;
 		}
 		
-		searchPath(curi+1,curj,m,n);
-		searchPath(curi,curj+1,m,n);
+		if(memo[m][n]!=-1)
+			return memo[m][n];
 		
-		return;
+		memo[m][n] = searchPath(memo,m-1,n)+searchPath(memo,m,n-1);
+		return memo[m][n];
 	}
 	
 	public int uniquePaths(int m, int n) {
         // m: width, n: depth
-		searchPath(0,0,m,n);
 		
-		return count;
+		int[][] memo = new int[m][n];
+		 
+	    //init with -1 value
+	    for(int i=0; i<m; i++){
+	        for(int j=0; j<n; j++){
+	        	memo[i][j]=-1;
+	        }
+	    }
+	    
+		return searchPath(memo,m-1,n-1);
     }
 }
